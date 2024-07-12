@@ -323,7 +323,7 @@ async function conectarSocket() {
 
 function enviarMensaje(socket, mensaje) {
     const message = {
-        from: 'usuario123',
+        from: 'usuario',
         text: mensaje,
         createdAt: new Date().getTime()
     };
