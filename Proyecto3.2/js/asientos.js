@@ -1,5 +1,4 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Temporizador de 1 minuto
     const elementoContador = document.getElementById('contador');
     let tiempo = 10 * 60;
 
@@ -13,12 +12,8 @@ document.addEventListener('DOMContentLoaded', function() {
             clearInterval(intervaloContador);
             alert('El tiempo ha expirado.');
 
-            // Llamar a la función liberarReservaDeAsientos
             liberarReservaDeAsientos().then(() => {
-                // Redirección a cines.html después de liberar los asientos
-                liberarReservaDeAsientos();
                 window.location.href = 'cines.html';
-                
             });
         }
     }
@@ -71,7 +66,6 @@ document.querySelectorAll('.subtract').forEach(button => {
     });
 });
 
-
 const urlParams = new URLSearchParams(window.location.search);
 const auditoriumId = urlParams.get('sala');
 const peliculaId = urlParams.get('pelicula');
@@ -83,7 +77,6 @@ async function obtenerAsientos() {
         const response = await fetch(`https://cinexunidos-production.up.railway.app/theatres/${theatreId}/auditoriums/${auditoriumId}/showtimes/${showtimeId}`);
         const data = await response.json();
         mostrarAsientos(data.seats);
-        
     } catch (error) {
         console.error('Error al obtener los datos de la API:', error);
     }
@@ -130,7 +123,7 @@ async function liberarReservaAsiento(asientoId) {
 }
 
 function seleccionarAsiento(asiento) {
-    const asientoId = asiento.dataset.id; // Suponiendo que cada botón de asiento tiene un data-id con su identificador
+    const asientoId = asiento.dataset.id;
     if (asiento.classList.contains('asiento-selec')) {
         liberarAsiento(asiento);
     } else {
@@ -147,7 +140,7 @@ function seleccionarAsiento(asiento) {
 }
 
 function liberarAsiento(asiento) {
-    const asientoId = asiento.dataset.id; // Suponiendo que cada botón de asiento tiene un data-id con su identificador
+    const asientoId = asiento.dataset.id;
     liberarReservaAsiento(asientoId).then(() => {
         asiento.classList.remove('asiento-selec');
         asiento.classList.add('asiento-dispo');
@@ -160,13 +153,10 @@ function liberarAsiento(asiento) {
     });
 }
 
-// Contador para asientos disponibles
 let asientosDisponibles = 0;
 
 function mostrarAsientos(asientos) {
     const seleccionAsientos = document.querySelector('.seleccion-asientos');
-
-    // Mostrar el nombre de la sala
     document.getElementById('nombre-sala').textContent = `Sala ${auditoriumId}`;
 
     Object.keys(asientos).forEach(fila => {
@@ -180,7 +170,7 @@ function mostrarAsientos(asientos) {
         asientos[fila].forEach((tipo, index) => {
             const tipoAsiento = document.createElement('button');
             tipoAsiento.classList.add('info-asiento');
-            const asientoId = `${fila}${index}`; // Genera el ID del asiento basado en la fila y el índice
+            const asientoId = `${fila}${index}`;
             tipoAsiento.dataset.id = asientoId;
             tipoAsiento.textContent = asientoId;
 
@@ -193,7 +183,7 @@ function mostrarAsientos(asientos) {
                 case 0:
                     tipoAsiento.classList.add('asiento-dispo');
                     tipoAsiento.addEventListener('click', () => seleccionarAsiento(tipoAsiento));
-                    asientosDisponibles++; // Incrementa el contador de asientos disponibles
+                    asientosDisponibles++;
                     break;
                 case 1:
                     tipoAsiento.classList.add('asiento-ocu');
@@ -216,43 +206,36 @@ function mostrarAsientos(asientos) {
         seleccionAsientos.appendChild(filaAsientos);
     });
 
-    // Actualizar la cantidad de asientos disponibles
     document.getElementById('asientos-disponibles').textContent = asientosDisponibles;
 }
 
 document.getElementById('btn-otro').addEventListener('click', async function(event) {
-    event.preventDefault(); // Evita que el enlace redireccione automáticamente
+    event.preventDefault();
     
     const target = event.target;
     const targetClass = target.classList.contains('carameleria') ? 'carameleria' : 'pagar';
     
-    // Obtener la cantidad total de boletos comprados
     const cantidadAdulto = parseInt(document.querySelector('.cantidad.ba').textContent);
     const cantidadNino = parseInt(document.querySelector('.cantidad.bn').textContent);
     const cantidadMayor = parseInt(document.querySelector('.cantidad.bm').textContent);
     const cantidadTotalBoletos = cantidadAdulto + cantidadNino + cantidadMayor;
 
-    // Obtener la cantidad total de asientos seleccionados
     const cantidadAsientosSeleccionados = document.querySelectorAll('.asiento-selec').length;
 
-    // Validar si las cantidades coinciden
     if (cantidadTotalBoletos !== cantidadAsientosSeleccionados) {
         alert('La cantidad de asientos seleccionados no coincide con la cantidad de boletos comprados. Por favor, revisa tu selección.');
     } else if (cantidadTotalBoletos === 0 && cantidadAsientosSeleccionados === 0) {
         alert('Debe seleccionar asientos y adquirir boletos.');
     } else {
-        // Procesar la reserva de los asientos seleccionados
         const asientosSeleccionados = document.querySelectorAll('.asiento-selec');
         const asientosReservados = [];
 
-        // Reservar los asientos seleccionados
         for (const asiento of asientosSeleccionados) {
             const asientoId = asiento.dataset.id;
-            await reservarAsiento(asientoId); // Reservar el asiento en la API
+            await reservarAsiento(asientoId);
             asientosReservados.push(asientoId);
         }
 
-        // Actualizar los asientos en la interfaz a ocupados y deshabilitar clics
         asientosReservados.forEach(asientoId => {
             const asiento = document.querySelector(`button[data-id="${asientoId}"]`);
             asiento.classList.remove('asiento-selec');
@@ -260,7 +243,6 @@ document.getElementById('btn-otro').addEventListener('click', async function(eve
             asiento.disabled = true;
         });
         
-        // Redirigir a la página correspondiente
         if (targetClass === 'carameleria') {
             window.location.href = 'carameleria.html';
         } else if (targetClass === 'pagar') {
@@ -273,7 +255,7 @@ async function liberarReservaDeAsientos() {
     const asientosSeleccionados = document.querySelectorAll('.asiento-selec');
     for (const asiento of asientosSeleccionados) {
         const asientoId = asiento.dataset.id;
-        await liberarReservaAsiento(asientoId); // Llamada a la función para liberar el asiento en la API
+        await liberarReservaAsiento(asientoId);
         asiento.classList.remove('asiento-selec');
         asiento.classList.add('asiento-dispo');
         asiento.disabled = false;
@@ -285,7 +267,7 @@ async function liberarReservaDeAsientos() {
 async function conectarSocket() {
     const socket = io('wss://cinexunidos-production.up.railway.app/', {
         auth: {
-            token: 'ABC-456', // Se debería sustituir por un token real...
+            token: 'ABC-456',
             name: 'username',
         },
     });
@@ -318,7 +300,6 @@ async function conectarSocket() {
             event.target.querySelector('input').value = '';
         }
     });
-
 }
 
 function enviarMensaje(socket, mensaje) {
@@ -333,12 +314,13 @@ function enviarMensaje(socket, mensaje) {
 
 function agregarMensaje(data) {
     if (data && data.message && data.message.text) {
-    const chatBody = document.querySelector('#chat-body');
-    const div = document.createElement('div');
-    div.classList.add('message');
-    div.innerHTML = `<p>${data.message.from}: ${data.message.text}</p>`;
-    chatBody.appendChild(div);
-    chatBody.scrollTop = chatBody.scrollHeight;
+        const chatBody = document.querySelector('#chat-body');
+        const div = document.createElement('div');
+        div.classList.add('message');
+        div.classList.add(data.type === 'sent' ? 'sent' : 'received');
+        div.innerHTML = `<p>${data.message.from}: ${data.message.text}</p>`;
+        chatBody.appendChild(div);
+        chatBody.scrollTop = chatBody.scrollHeight;
     }
 }
 
@@ -360,4 +342,3 @@ function toggleChat() {
 document.addEventListener('DOMContentLoaded', () => {
     conectarSocket();
 });
- 
