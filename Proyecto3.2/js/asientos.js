@@ -264,7 +264,7 @@ document.getElementById('btn-otro').addEventListener('click', async function(eve
         if (targetClass === 'carameleria') {
             window.location.href = 'carameleria.html';
         } else if (targetClass === 'pagar') {
-            window.location.href = 'pagar.html';
+            
         }
     }
 });
