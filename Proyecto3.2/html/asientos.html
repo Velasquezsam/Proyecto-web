@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comprar Boletos</title>
+    <link rel="stylesheet" href="../css/base.css">
+    <link rel="stylesheet" href="../css/asientos.css">
+    <style>
+        .bottom-right {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+            width: 300px;
+        }
+
+        .chat {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            height: 400px;
+            overflow: hidden;
+        }
+
+        .contact {
+            background: #007bff;
+            color: white;
+            padding: 15px;
+            display: flex;
+            align-items: center;
+        }
+
+        .pic {
+            background: url('https://via.placeholder.com/40') no-repeat center center;
+            background-size: cover;
+            border-radius: 50%;
+            height: 40px;
+            width: 40px;
+            margin-right: 10px;
+        }
+
+        .messages {
+            flex: 1;
+            padding: 15px;
+            overflow-y: auto;
+            background: #f1f1f1;
+            color: black;
+        }
+
+        .message {
+            margin-bottom: 15px;
+        }
+
+        .input {
+            display: flex;
+            border-top: 1px solid #ddd;
+        }
+
+        .input input {
+            flex: 1;
+            padding: 10px;
+            border: none;
+            outline: none;
+        }
+
+        .input i {
+            padding: 10px;
+            background: #007bff;
+            color: white;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li>
+                    <a href="carameleria.html" class="carameleria-hover">
+                        <img src="../html/img/Vector.png" class="normal-img" alt="Imagen normal" style="width: 40px; height: 40px; margin-bottom: 5px;">
+                        Carameleria
+                    </a>
+                </li>
+                <li>
+                    <a href="cartelera.html" class="cartelera-hover">
+                        <img src="../html/img/videotime.png" class="normal-img" alt="Imagen normal" style="width: 40px; height: 40px; margin-bottom: 5px;">
+                        Cartelera
+                    </a>
+                </li>
+                <li>
+                    <a href="cines.html" class="principal-hover">
+                        <img src="../html/img/videoplay.png" style="width: 38px; height: 38px; margin-bottom: 5px;">
+                        Principal
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <div class="contador" id="contador">05:00</div>
+        <section class="seleccion-asientos">
+            <h3>Selecciona tus asientos en <span id="nombre-sala"></span></h3>
+            <p>Asientos disponibles: <span id="asientos-disponibles">0</span></p>
+            <div class="info-asiento">
+                <p class="info-asiento-selec"> </p>
+                <p>Seleccionados</p>
+                <p class="info-asiento-reser"> </p>
+                <p>Reservados</p>
+                <p class="info-asiento-dispo"> </p>
+                <p>Disponibles</p>
+                <p class="info-asiento-ocu"> </p>
+                <p>Ocupados</p>
+            </div>
+        </section>
+        <section class="boletos">
+            <div class="boleto-adulto">
+                <div class="info">
+                    <h3>Entrada de adulto</h3>
+                    <p>Precio 2$</p>
+                </div>
+                <button class="subtract">-</button>
+                <p class="cantidad ba">0</p>
+                <button class="add">+</button>
+                <p class="precio-adulto">0$</p>
+            </div>
+            <div class="boleto-nino">
+                <div class="info">
+                    <h3>Entrada de niño</h3>
+                    <p>Precio 1$</p>
+                </div>
+                <button class="subtract">-</button>
+                <p class="cantidad bn">0</p>
+                <button class="add">+</button>
+                <p class="precio-nino">0$</p>
+            </div>
+            <div class="boleto-mayor">
+                <div class="info">
+                    <h3>Entrada de adulto mayor</h3>
+                    <p>Precio 1$</p>
+                </div>
+                <button class="subtract">-</button>
+                <p class="cantidad bm">0</p>
+                <button class="add">+</button>
+                <p class="precio-mayor">0$</p> 
+            </div>
+            <div class="total">
+                <p>Total 0$</p>
+            </div>
+        </section>
+        
+        <section>
+            <div id="btn-otro">
+                <ul>
+                    <li><a href="carameleria.html" class="button carameleria">Carameleria &#9654;</a></li>
+                    <li><a href="" class="button pagar">Pagar &#9654;</a></li>
+                </ul>
+            </div>
+        </section>
+        <section>
+            <div class="bottom-right">
+                <div class="chat">
+                    <div class="contact bar">
+                        <div class="pic" id="username-pic"></div>
+                        <div class="name" id="username"></div>
+                        <div class="seen" id="last-seen">Hoy a las 12:56</div>
+                    </div>
+                    <div class="messages" id="chat">
+                        <div style="display:none;">
+                            <div class="time">Hoy a las 11:41</div>
+                            <div class="message incoming"></div>
+                            <div class="message"></div>
+                        </div>
+                        <div class="message" style="display: none;">
+                            <div class="typing typing-1"></div>
+                            <div class="typing typing-2"></div>
+                            <div class="typing typing-3"></div>
+                        </div>
+                    </div>
+                    <form class="input">
+                        <input placeholder="Escribe tu mensaje aquí" type="text" />
+                        <i class="fas fa-paper-plane"></i>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+    <script src="https://cdn.socket.io/4.7.5/socket.io.min.js" integrity="sha384-2huaZvOR9iDzHqslqwpR87isEmrfxqyWOF7hr7BY6KG0+hVKLoEXMPUJw3ynWuhO" crossorigin="anonymous"></script>
+    <script src="../js/asientos.js"></script>
+</body>
+</html>

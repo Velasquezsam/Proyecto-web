@@ -1,0 +1,257 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+:root {
+    --clr-red: #F74346;
+    --clr-gray: #161621;
+    --clr-gray2: #282841;
+    --clr-background: #1f1f2e;
+    --clr-yellow: #ffda48;
+    --clr-blue:#645aa7;
+}
+
+body {
+    font-family: "Roboto", sans-serif;
+    background-color: var(--clr-background);
+    color: white;
+    margin: 0;
+    padding: 0;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+
+.seleccion-asientos {
+    background-color: #2a2a3a;
+    border-radius: 10px;
+    padding: 20px;
+    width: 90%;
+    width: 755px;
+    margin-bottom: 50px;
+}
+
+.seleccion-asientos h3, .seleccion-asientos p {
+    text-align: center;
+    margin: 10px 0;
+}
+.seleccion-asientos h4{
+    left: 0;
+    margin: 10px 0;
+}
+.seleccion-asientos section {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+
+.seleccion-asientos button {
+    color: white;
+    border-radius: 7px;
+    margin: 2px;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+}
+
+.seleccion-asientos button.asiento-dispo{
+    background-color: var(--clr-gray2);
+    border: 3px solid var(--clr-red);
+}
+
+.seleccion-asientos button.asiento-ocu {
+    background-color: #645aa7;
+    border-color: #645aa7; /* Corregido el color del borde */
+    cursor:auto;
+}
+
+.seleccion-asientos button.asiento-no {
+    background-color: #2a2a3a;
+    border-color: #2a2a3a; /* Corregido el color del borde */
+    cursor:auto;
+}
+
+.seleccion-asientos button.asiento-reser {
+    background-color: var(--clr-red);
+    border-color: var(--clr-red); /* Corregido el color del borde */
+    cursor:auto;
+}
+
+.seleccion-asientos button.asiento-selec {
+    background-color: var(--clr-yellow);
+    border-color: var(--clr-yellow); /* Corregido el color del borde */
+}
+
+.seleccion-asientos button.asiento-dispo:hover {
+    background-color: var(--clr-yellow);
+}
+
+/* Ticket Section */
+.boletos {
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+    width: 90%;
+    max-width: 400px;
+    background-color: #2a2a3a;
+}
+
+.boletos .boleto-adulto, .boletos .boleto-nino, .boletos .boleto-mayor {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.boletos .info {
+    flex: .7;
+    text-align: left;
+}
+
+.boletos .info h3 {
+    font-size: 16px;
+    margin: 0;
+}
+
+.boletos .info p {
+    font-size: 14px;
+    margin: 5px 0 0;
+}
+
+.boletos button {
+    background-color: white;
+    border: none;
+    color: var(--clr-gray);
+    border-radius: 5px;
+    width: 30px;
+    font-size: 20px;
+    font-weight: 1000;
+    height: 30px;
+    cursor: pointer;
+}
+
+.boletos button:hover {
+    background-color: #57577d;
+}
+
+.cantidad {
+    background-color: var(--clr-red);
+    width: 30px;
+    height: 30px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-weight: 700;
+    color: white;
+    font-size: 16px;
+}
+
+.total {
+    display: flex;
+    justify-content: flex-end;
+    font-size: 1.2em;
+    margin-top: 20px;
+}
+
+.total p {
+    font-size: 20px;
+    font-weight: 1000;
+}
+#btn-otro ul {
+    list-style-type: none;
+    padding: 0;
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+}
+
+#btn-otro li {
+    margin: 0 10px;
+}
+
+.button {
+    display: inline-block;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 25px;
+    color: white;
+    font-weight: bold;
+}
+
+.carameleria {
+    background-color: var(--clr-blue);
+}
+
+.pagar {
+    background-color: #d9534f;
+}
+
+.button:hover {
+    opacity: 0.8;
+}
+
+.info-asiento{
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.info-asiento p{
+    font-weight: 400;
+}
+
+.info-asiento .info-asiento-selec,.info-asiento-reser,.info-asiento-dispo,.info-asiento-ocu{
+    width: 30px;
+    height: 30px;
+    border-radius: 10px;
+}
+.info-asiento .info-asiento-no{
+    background-color: #2a2a3a;
+    border: 5px solid #2a2a3a;
+}
+.info-asiento .info-asiento-reser{
+    background-color: var(--clr-red);
+    border: 5px solid var(--clr-red);
+}
+
+.info-asiento .info-asiento-selec{
+    background-color: var(--clr-yellow);
+    border: 5px solid var(--clr-yellow);
+}
+
+.info-asiento .info-asiento-ocu{
+    background-color: var(--clr-blue);
+    border: 5px solid var(--clr-blue);
+}
+.info-asiento .info-asiento-dispo{
+    width: 30px;
+    height: 30px;
+    background-color: #2a2a3a;
+    border: 5px solid var(--clr-red);
+}
+
+.fila-asientos{
+    display: flex;
+    text-align: left;
+    align-items: left;
+}
+
+/* Estilos para el contador */
+.contador {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    background-color: #f74346;
+    color: #ffffff;
+    padding: 10px 20px;
+    border-radius: 10px;
+    font-size: 18px;
+    z-index: 1000;
+}

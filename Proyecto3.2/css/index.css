@@ -1,0 +1,130 @@
+
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: calc(100vh - 100px);
+}
+
+.container {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    margin-bottom: 200px;
+}
+
+.container div {
+    text-align: center;
+}
+
+footer {
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    text-align: center;
+    padding: 10px;
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+}
+
+a{
+    text-decoration: none;
+}
+
+.carousel{
+    width: 100%;
+    margin: 0px 0px;
+}
+@media(min-width:768px){
+    .carousel{
+        margin: 0px 60px;
+    }
+}
+.carrusel-list{
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: fit-content;
+    height: 304px;
+    padding: 10px 0px;
+    margin: 0px auto;
+    max-width: 90vw;
+    overflow: hidden;
+}
+
+.carrusel-track{
+    position: relative;
+    top:0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    transition: .5s ease-in-out;
+}
+
+.carrusel{
+    position: relative;
+    width: 210px;
+    padding: 0 18px;
+    float: left;
+    box-sizing: border-box;
+    display: flex;
+    height: 100%;
+
+}
+
+.carrusel h4{
+    position: absolute;
+    z-index: 1;
+    font-size: 22px;
+    line-height: 23px;
+    color: white;
+    padding: 15px;
+}
+
+.carrusel h4 small {
+    font-size: 15px;
+    display: block;
+}
+.carrusel a img{
+    object-fit: cover;
+    height: 300px;
+    width: 200px;
+    border-radius: 15px;
+    box-shadow: 0 2px 5px 0 solid black;
+    transition: .3s ease-in-out;
+}
+@media(min-width:768px){
+    .carrusel{
+        width: 275px;
+    }
+    .carrusel a img{
+        width: 250px;
+    }
+}
+
+.carrusel-arrow{
+    border-radius: 30px;
+    background-color: #F74346;
+    position: absolute;
+    z-index: 4;
+    width: 48px;
+    height: 48px;
+    text-align: center;
+    border: 0;
+    cursor: pointer;
+}
+.carrusel-arrow:focus{
+    outline: 0;
+}
+.carrusel-arrow svg{
+    width: 12px;
+    height: 100%;
+    color: #2B2B38;
+}
+.carrusel-prev{
+    left: 0px;
+}
+.carrusel-next{
+    right: 0px;
+}
