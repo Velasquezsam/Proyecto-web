@@ -2,12 +2,10 @@
 .container {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 10px;
+    gap: 20px;
     justify-content: center;
-    margin-top: 50px;
+    margin: 50px 100px;
     align-items: center;
-    margin-left: 100px;
-    margin-right: 100px;
 }
 
 /* Estilo para cada bloque de película */
@@ -17,31 +15,33 @@
 }
 
 .img img {
-    width: 200px;
-    height: 300px;
+    width: 100%;
+    height: auto;
     transition: transform 0.3s ease;
     border-radius: 10px;
 }
 
-/* Mostrar el título de la película al pasar el cursor */
-.img h2 {
+/* Mostrar detalles de la película al pasar el cursor */
+.details {
     position: absolute;
     bottom: 0;
     left: 0;
-    width: 190px;
+    width: 100%;
     background-color: rgba(0, 0, 0, 0.7);
     color: #fff;
-    padding: 8px;
-    margin: 0;
+    padding: 10px;
     opacity: 0;
     transition: opacity 0.3s ease;
-    color: #F74346;
 }
 
 .img:hover img {
     transform: scale(1.05);
 }
 
-.img:hover h2 {
+.img:hover .details {
     opacity: 1;
+}
+
+.details h2, .details p {
+    margin: 5px 0;
 }
