@@ -283,7 +283,7 @@ async function liberarReservaDeAsientos() {
 }
 
 async function conectarSocket() {
-    const socket = io('wss://cinexunidos-production.up.railway.app/',{
+    const socket = io('wss://cinexunidos-production.up.railway.app/', {
         auth: {
             token: 'ABC-456', // Se debería sustituir por un token real...
             name: 'username',
@@ -313,20 +313,12 @@ async function conectarSocket() {
         event.preventDefault();
         const mensaje = event.target.querySelector('input').value;
 
-        //debugger;
         if (mensaje.trim()) {
             enviarMensaje(socket, mensaje);
             event.target.querySelector('input').value = '';
         }
     });
 
-    const $btnDesconrctar = document.querySelector('#disconnect-btn');
-
-    if ($btnDesconrctar) {
-        $btnDesconrctar.addEventListener('click', () => {
-            socket.disconnect();
-        });
-    }
 }
 
 function enviarMensaje(socket, mensaje) {
@@ -337,17 +329,16 @@ function enviarMensaje(socket, mensaje) {
     };
 
     socket.emit('send-message', message);
-    agregarMensaje(message);
 }
 
 function agregarMensaje(data) {
     if (data && data.message && data.message.text) {
-        console.log('agregarMensaje', data.message.text);
-        const div = document.createElement('div');
-        div.textContent = data.message.text;
-        document.querySelector('#chat').appendChild(div);
-    } else {
-        console.log('Mensaje no agregado: data o data.message es undefined');
+    const chatBody = document.querySelector('#chat-body');
+    const div = document.createElement('div');
+    div.classList.add('message');
+    div.innerHTML = `<p>${data.message.from}: ${data.message.text}</p>`;
+    chatBody.appendChild(div);
+    chatBody.scrollTop = chatBody.scrollHeight;
     }
 }
 
@@ -356,14 +347,17 @@ function actualizarListaUsuarios(users) {
     usersList.innerHTML = '';
     users.forEach(user => {
         const li = document.createElement('li');
-        li.textContent = `${user.users.username} (${user.users.userId})`;
+        li.textContent = `${user.username} (${user.userId})`;
         usersList.appendChild(li);
     });
 }
 
+function toggleChat() {
+    const chatContainer = document.getElementById('chat-container');
+    chatContainer.style.display = chatContainer.style.display === 'none' || !chatContainer.style.display ? 'block' : 'none';
+}
 
 document.addEventListener('DOMContentLoaded', () => {
     conectarSocket();
 });
-
-
+ 

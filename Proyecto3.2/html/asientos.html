@@ -7,70 +7,91 @@
     <link rel="stylesheet" href="../css/base.css">
     <link rel="stylesheet" href="../css/asientos.css">
     <style>
-        .bottom-right {
+        /* Estilos del chat burbuja */
+        .chat-bubble {
             position: fixed;
             bottom: 20px;
             right: 20px;
-            z-index: 1000;
-            width: 300px;
-        }
-
-        .chat {
-            background: white;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            display: flex;
-            flex-direction: column;
-            height: 400px;
-            overflow: hidden;
-        }
-
-        .contact {
-            background: #007bff;
+            background-color: var(--clr-red);
             color: white;
             padding: 15px;
+            border-radius: 50px;
+            cursor: pointer;
+            z-index: 1000;
             display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .chat-bubble:hover {
+            background-color: var(--clr-gray2);
+        }
+
+        .chat-container {
+            display: none;
+            position: fixed;
+            bottom: 80px;
+            right: 20px;
+            width: 300px;
+            max-width: 90%;
+            background-color: var(--clr-gray);
+            border-radius: 10px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+        }
+
+        .chat-header {
+            background-color: var(--clr-red);
+            color: white;
+            padding: 10px;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+            display: flex;
+            justify-content: space-between;
             align-items: center;
         }
 
-        .pic {
-            background: url('https://via.placeholder.com/40') no-repeat center center;
-            background-size: cover;
-            border-radius: 50%;
-            height: 40px;
-            width: 40px;
+        .chat-body {
+            padding: 10px;
+            height: 300px;
+            overflow-y: auto;
+        }
+
+        .chat-input {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            border-top: 1px solid var(--clr-gray2);
+        }
+
+        .chat-input input {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
             margin-right: 10px;
         }
 
-        .messages {
-            flex: 1;
-            padding: 15px;
-            overflow-y: auto;
-            background: #f1f1f1;
-            color: black;
-        }
-
-        .message {
-            margin-bottom: 15px;
-        }
-
-        .input {
-            display: flex;
-            border-top: 1px solid #ddd;
-        }
-
-        .input input {
-            flex: 1;
-            padding: 10px;
-            border: none;
-            outline: none;
-        }
-
-        .input i {
-            padding: 10px;
-            background: #007bff;
+        .chat-input button {
+            background-color: var(--clr-red);
             color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
             cursor: pointer;
+        }
+
+        .chat-input button:hover {
+            background-color: var(--clr-yellow);
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 576px) {
+            .chat-container {
+                width: 100%;
+                bottom: 60px;
+            }
         }
     </style>
 </head>
@@ -159,35 +180,33 @@
                 </ul>
             </div>
         </section>
-        <section>
-            <div class="bottom-right">
-                <div class="chat">
-                    <div class="contact bar">
-                        <div class="pic" id="username-pic"></div>
-                        <div class="name" id="username"></div>
-                        <div class="seen" id="last-seen">Hoy a las 12:56</div>
-                    </div>
-                    <div class="messages" id="chat">
-                        <div style="display:none;">
-                            <div class="time">Hoy a las 11:41</div>
-                            <div class="message incoming"></div>
-                            <div class="message"></div>
-                        </div>
-                        <div class="message" style="display: none;">
-                            <div class="typing typing-1"></div>
-                            <div class="typing typing-2"></div>
-                            <div class="typing typing-3"></div>
-                        </div>
-                    </div>
-                    <form class="input">
-                        <input placeholder="Escribe tu mensaje aquí" type="text" />
-                        <i class="fas fa-paper-plane"></i>
-                    </form>
+        <!-- Chat Bubble Section -->
+        <div class="chat-bubble" onclick="toggleChat()">
+            <i class="fas fa-comments"></i>
+        </div>
+        <div class="chat-container" id="chat-container">
+            <div class="chat-header">
+                <span>Chat</span>
+                <button onclick="toggleChat()">X</button>
+            </div>
+            <div class="chat-body" id="chat-body">
+                <div class="message">
+                    <p>¡Hola! Interactua con otros compradores para hacer mas agradable la eleccion de butacas</p>
                 </div>
             </div>
-        </section>
+            <div class="chat-input">
+                <form class="input">
+                    <input type="text" placeholder="Escribe tu mensaje aquí" id="chat-input">
+                    <button type="submit">Enviar</button>
+                </form>
+            </div>
+        </div>
+        <ul id="users-list"></ul>
     </main>
     <script src="https://cdn.socket.io/4.7.5/socket.io.min.js" integrity="sha384-2huaZvOR9iDzHqslqwpR87isEmrfxqyWOF7hr7BY6KG0+hVKLoEXMPUJw3ynWuhO" crossorigin="anonymous"></script>
     <script src="../js/asientos.js"></script>
+    <script>
+        
+    </script>
 </body>
 </html>
