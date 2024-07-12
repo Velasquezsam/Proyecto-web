@@ -7,7 +7,7 @@
     --clr-gray2: #282841;
     --clr-background: #1f1f2e;
     --clr-yellow: #ffda48;
-    --clr-blue:#645aa7;
+    --clr-blue: #645aa7;
 }
 
 body {
@@ -30,7 +30,7 @@ main {
     border-radius: 10px;
     padding: 20px;
     width: 90%;
-    width: 755px;
+    max-width: 950px;
     margin-bottom: 50px;
 }
 
@@ -38,10 +38,12 @@ main {
     text-align: center;
     margin: 10px 0;
 }
-.seleccion-asientos h4{
+
+.seleccion-asientos h4 {
     left: 0;
     margin: 10px 0;
 }
+
 .seleccion-asientos section {
     display: flex;
     justify-content: center;
@@ -57,32 +59,32 @@ main {
     cursor: pointer;
 }
 
-.seleccion-asientos button.asiento-dispo{
+.seleccion-asientos button.asiento-dispo {
     background-color: var(--clr-gray2);
     border: 3px solid var(--clr-red);
 }
 
 .seleccion-asientos button.asiento-ocu {
     background-color: #645aa7;
-    border-color: #645aa7; /* Corregido el color del borde */
-    cursor:auto;
+    border-color: #645aa7;
+    cursor: auto;
 }
 
 .seleccion-asientos button.asiento-no {
     background-color: #2a2a3a;
-    border-color: #2a2a3a; /* Corregido el color del borde */
-    cursor:auto;
+    border-color: #2a2a3a;
+    cursor: auto;
 }
 
 .seleccion-asientos button.asiento-reser {
     background-color: var(--clr-red);
-    border-color: var(--clr-red); /* Corregido el color del borde */
-    cursor:auto;
+    border-color: var(--clr-red);
+    cursor: auto;
 }
 
 .seleccion-asientos button.asiento-selec {
     background-color: var(--clr-yellow);
-    border-color: var(--clr-yellow); /* Corregido el color del borde */
+    border-color: var(--clr-yellow);
 }
 
 .seleccion-asientos button.asiento-dispo:hover {
@@ -106,7 +108,7 @@ main {
 }
 
 .boletos .info {
-    flex: .7;
+    flex: 0.7;
     text-align: left;
 }
 
@@ -161,6 +163,7 @@ main {
     font-size: 20px;
     font-weight: 1000;
 }
+
 #btn-otro ul {
     list-style-type: none;
     padding: 0;
@@ -196,48 +199,51 @@ main {
     opacity: 0.8;
 }
 
-.info-asiento{
+.info-asiento {
     display: flex;
     text-align: center;
     align-items: center;
     justify-content: space-between;
 }
 
-.info-asiento p{
+.info-asiento p {
     font-weight: 400;
 }
 
-.info-asiento .info-asiento-selec,.info-asiento-reser,.info-asiento-dispo,.info-asiento-ocu{
+.info-asiento .info-asiento-selec, .info-asiento-reser, .info-asiento-dispo, .info-asiento-ocu {
     width: 30px;
     height: 30px;
     border-radius: 10px;
 }
-.info-asiento .info-asiento-no{
+
+.info-asiento .info-asiento-no {
     background-color: #2a2a3a;
     border: 5px solid #2a2a3a;
 }
-.info-asiento .info-asiento-reser{
+
+.info-asiento .info-asiento-reser {
     background-color: var(--clr-red);
     border: 5px solid var(--clr-red);
 }
 
-.info-asiento .info-asiento-selec{
+.info-asiento .info-asiento-selec {
     background-color: var(--clr-yellow);
     border: 5px solid var(--clr-yellow);
 }
 
-.info-asiento .info-asiento-ocu{
+.info-asiento .info-asiento-ocu {
     background-color: var(--clr-blue);
     border: 5px solid var(--clr-blue);
 }
-.info-asiento .info-asiento-dispo{
+
+.info-asiento .info-asiento-dispo {
     width: 30px;
     height: 30px;
     background-color: #2a2a3a;
     border: 5px solid var(--clr-red);
 }
 
-.fila-asientos{
+.fila-asientos {
     display: flex;
     text-align: left;
     align-items: left;
@@ -254,4 +260,61 @@ main {
     border-radius: 10px;
     font-size: 18px;
     z-index: 1000;
+}
+
+/* Media Queries para hacer el diseño responsive */
+@media (max-width: 1200px) {
+    .seleccion-asientos {
+        width: 80%;
+    }
+    
+    .seleccion-asientos button {
+        width: 35px;
+        height: 35px;
+    }
+}
+
+@media (max-width: 992px) {
+    .seleccion-asientos {
+        width: 70%;
+    }
+    
+    .seleccion-asientos button {
+        width: 30px;
+        height: 30px;
+    }
+}
+
+@media (max-width: 768px) {
+    .seleccion-asientos {
+        width: 90%;
+    }
+    
+    .seleccion-asientos button {
+        width: 25px;
+        height: 25px;
+    }
+    
+    .boletos {
+        width: 100%;
+    }
+}
+
+@media (max-width: 576px) {
+    .seleccion-asientos button {
+        width: 20px;
+        height: 20px;
+    }
+    
+    .total {
+        font-size: 1em;
+    }
+    
+    .total p {
+        font-size: 16px;
+    }
+    
+    .button {
+        font-size: 20px;
+    }
 }
