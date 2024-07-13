@@ -310,18 +310,19 @@ function enviarMensaje(socket, mensaje) {
     };
 
     socket.emit('send-message', message);
+
+    // Agregar mensaje enviado al chat
+    agregarMensaje({ message, type: 'sent' });
 }
 
 function agregarMensaje(data) {
-    if (data && data.message && data.message.text) {
-        const chatBody = document.querySelector('#chat-body');
-        const div = document.createElement('div');
-        div.classList.add('message');
-        div.classList.add(data.type === 'sent' ? 'sent' : 'received');
-        div.innerHTML = `<p>${data.message.from}: ${data.message.text}</p>`;
-        chatBody.appendChild(div);
-        chatBody.scrollTop = chatBody.scrollHeight;
-    }
+    const chatBody = document.querySelector('#chat-body');
+    const div = document.createElement('div');
+    div.classList.add('message');
+    div.classList.add(data.type === 'sent' ? 'sent' : 'received');
+    div.innerHTML = `<p>${data.message.from}: ${data.message.text}</p>`;
+    chatBody.appendChild(div);
+    chatBody.scrollTop = chatBody.scrollHeight;
 }
 
 function actualizarListaUsuarios(users) {

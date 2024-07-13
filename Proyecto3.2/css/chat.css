@@ -59,7 +59,6 @@
     border-radius: 10px;
     display: inline-block;
     word-wrap: break-word;
-    clear: both;
 }
 
 .message.sent {
