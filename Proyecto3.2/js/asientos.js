@@ -316,14 +316,19 @@ function enviarMensaje(socket, mensaje) {
 }
 
 function agregarMensaje(data) {
-    const chatBody = document.querySelector('#chat-body');
-    const div = document.createElement('div');
-    div.classList.add('message');
-    div.classList.add(data.type === 'sent' ? 'sent' : 'received');
-    div.innerHTML = `<p>${data.message.from}: ${data.message.text}</p>`;
-    chatBody.appendChild(div);
-    chatBody.scrollTop = chatBody.scrollHeight;
+    if (data && data.message && data.message.text) {
+        const chatBody = document.query
+        Selector('#chat-body');
+        const div = document.createElement('div');
+        div.classList.add('message');
+        div.classList.add(data.type === 'sent' ? 'sent' : 'received');
+        div.innerHTML = `<p>${data.message.from}: ${data.message.text}</p>`;
+        chatBody.appendChild(div);
+        chatBody.scrollTop = chatBody.scrollHeight;
+    }
+
 }
+
 
 function actualizarListaUsuarios(users) {
     const usersList = document.querySelector('#users-list');
