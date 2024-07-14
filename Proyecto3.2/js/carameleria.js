@@ -64,3 +64,21 @@ payButton.addEventListener('click', handlePay);
 
 // Inicializar el total al cargar la página
 updateTotal();
+// Función para manejar la búsqueda
+function handleSearch(event) {
+    const searchTerm = event.target.value.toLowerCase();
+    const productItems = document.querySelectorAll('.product-item');
+
+    productItems.forEach(item => {
+        const productName = item.querySelector('.product-info h3').textContent.toLowerCase();
+        if (productName.includes(searchTerm)) {
+            item.style.display = '';
+        } else {
+            item.style.display = 'none';
+        }
+    });
+}
+
+// Agregar event listener a la barra de búsqueda
+const searchBar = document.querySelector('input[type="search"]');
+searchBar.addEventListener('input', handleSearch);
