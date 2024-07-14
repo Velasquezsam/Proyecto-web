@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
     const elementoContador = document.getElementById('contador');
-    let tiempo = 10 * 60;
+    let tiempo = 3 * 60;
 
     function actualizarContador() {
         const minutos = Math.floor(tiempo / 60);
